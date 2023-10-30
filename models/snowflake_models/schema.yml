@@ -1,0 +1,58 @@
+version: 2
+
+sources:
+  - name: snowplow
+    database: DUMMY
+    schema: PUBLIC
+    loader: S3
+    loaded_at_field: collector_hour
+    
+    tables:
+      - name: movies_dbt
+        description: "External table of Snowplow events "
+        external:
+          location: "@AWS_STG_OP_A"  # reference an existing external stage
+          file_format: "( type = csv )"      # fully specified here, or reference an existing file format
+          auto_refresh: true                  # requires configuring an event notification from Amazon S3 or Azure
+        
+        # all Snowflake external tables natively include a `metadata$filename` pseudocolumn
+        # and a `value` column (JSON blob-ified version of file contents), so there is no need to specify
+        # them here. you may optionally specify columns to unnest or parse from the file:
+        columns:
+          - name: show_id
+            description: "Description for show_id column"
+            data_type: varchar
+          - name: type
+            description: "Description for type column"
+            data_type: varchar
+          - name: title
+            description: "Description for title column"
+            data_type: varchar
+          - name: director
+            description: "Description for director column"
+            data_type: varchar
+          - name: cast
+            description: "Description for cast column"
+            data_type: varchar
+          - name: country
+            description: "Description for country column"
+            data_type: varchar
+          - name: date_added
+            description: "Description for date_added column"
+            data_type: varchar
+          - name: release_year
+            description: "Description for release_year column"
+            data_type: number
+          - name: rating
+            description: "Description for rating column"
+            data_type: varchar
+          - name: duration
+            description: "Description for duration column"
+            data_type: varchar
+          - name: listed_in
+            description: "Description for listed_in column"
+            data_type: varchar
+          - name: description
+            description: "Description for description column"
+            data_type: varchar
+              
