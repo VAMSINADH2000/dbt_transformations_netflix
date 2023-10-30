@@ -1,0 +1,39 @@
+dbt_movies:
+  outputs:
+    dev:
+      account: eluvndc-jgb97672
+      database: DUMMY
+      password: dbtPassword123
+      role: DBT_TRANSFORM
+      schema: PUBLIC
+      threads: 1
+      type: snowflake
+      user: dbt_user_movies
+      warehouse: COMPUTE_WH
+  target: dev
+dbtproject:
+  outputs:
+    dev:
+      account: eluvndc-jgb97672
+      database: AIRBNB
+      password: dbtPassword123
+      role: transform
+      schema: DEV
+      threads: 1
+      type: snowflake
+      user: dbt
+      warehouse: COMPUTE_WH
+  target: dev
+dbttutorial:
+  outputs:
+    dev:
+      account: eluvndc-jgb97672
+      database: AIRBNB
+      password: dbtPassword123
+      role: transform
+      schema: DEVYT
+      threads: 1
+      type: snowflake
+      user: vamsi
+      warehouse: COMPUTE_WH
+  target: dev
