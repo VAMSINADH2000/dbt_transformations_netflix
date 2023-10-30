@@ -15,3 +15,5 @@ RUN cp profiles/profiles.yml /root/.dbt/
 COPY ./run_script.sh .
 CMD ["./run_script.sh"]
 
+
+
